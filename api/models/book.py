@@ -12,3 +12,5 @@ book = Table(
     Column("book_cover", String, nullable=False),
     Column("created_at", DateTime, server_default=func.now(), nullable=False)
 )
+
+
