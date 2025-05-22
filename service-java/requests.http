@@ -1,0 +1,22 @@
+### GET request to example server
+GET http://localhost:8081/api/favorite
+
+###
+POST http://localhost:8081/api/favorite
+Content-Type: application/json
+
+{
+    "userId":5,
+    "courseId": 5476
+}
+
+###
+DELETE http://localhost:8081/api/favorite/682cc583f20a517884e8576b
+
+###
+GET http://localhost:8081/api/favorite/check?userId=5&courseId=456
+
+###
+GET http://localhost:8081/api/favorite/getByUser?userId=5
+
+
