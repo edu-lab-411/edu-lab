@@ -1,0 +1,108 @@
+<div class="flex-1 p-6 overflow-auto">
+    <div class="mb-6 flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-800">Overview</h1>
+        <p class="text-gray-500">Welcome back</p>
+      </div>
+      
+      <!-- <div class="flex items-center space-x-4">
+        <p-dropdown 
+          [options]="timeRanges" 
+          [(ngModel)]="selectedTimeRange" 
+          optionLabel="name"
+          styleClass="p-dropdown-sm"
+        ></p-dropdown>
+        
+        <button 
+          pButton 
+          label="Export" 
+          icon="pi pi-download" 
+          class="p-button-outlined p-button-indigo"
+        ></button>
+      </div> -->
+    </div>
+    
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-[60px]">
+      <div *ngFor="let stat of summaryStats" class="bg-white p-6 rounded-xl shadow-sm">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="text-gray-500 text-sm font-semibold">{{ stat.label }}</p>
+            <h3 class="text-2xl font-bold mt-1">{{ stat.value }}</h3>
+            <!-- <div class="flex items-center mt-2">
+              <span [ngClass]="stat.trend > 0 ? 'text-green-500' : 'text-red-500'" class="text-sm font-medium">
+                {{ stat.trend > 0 ? '+' : '' }}{{ stat.trend }}%
+              </span>
+              <span class="text-gray-500 text-sm ml-1">vs last period</span>
+            </div> -->
+          </div>
+          <div [ngClass]="stat.iconBg" class="w-10 h-10 rounded-lg flex items-center justify-center">
+            <i [ngClass]="stat.icon" class="text-white"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 w-full">
+      
+      <p-card styleClass="h-full p-[20px] bg-white">
+        <ng-template pTemplate="header">
+          <div class="border-gray-100">
+            <h3 class="text-[20px] font-semibold text-gray-800">Major Per Users</h3>
+          </div>
+        </ng-template>
+        <div class="">
+          <p-chart type="line" [data]="MajorData" [options]="chartOptions" height="300px"></p-chart>
+        </div>
+      </p-card>
+      
+      <p-card styleClass="h-full p-[20px] bg-white">
+        <ng-template pTemplate="header">
+          <div class="border-gray-100">
+            <h3 class="text-[20px] font-semibold text-gray-800">Course Enrollment Stats</h3>
+          </div>
+        </ng-template>
+        <div class="">
+          <p-chart type="bar" [data]="TrafficCoursesData" [options]="chartOptions" height="300px"></p-chart>
+        </div>
+      </p-card>
+    </div>
+    
+    <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <p-card styleClass="h-full">
+        <ng-template pTemplate="header">
+          <div class="p-4 border-b border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-800">Major</h3>
+          </div>
+        </ng-template>
+        <div class="p-4">
+          <p-chart type="pie" [data]="TrafficCoursesData" [options]="pieChartOptions" height="250px"></p-chart>
+        </div>
+      </p-card>
+
+      <p-card styleClass="h-full">
+        <ng-template pTemplate="header">
+          <div class="p-4 border-b border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-800">Top 6 Courses Traffic</h3>
+          </div>
+        </ng-template>
+        <div class="p-4">
+          <p-chart type="doughnut" [data]="MajorData" [options]="pieChartOptions" height="250px"></p-chart>
+        </div>
+      </p-card>
+      
+      <p-card styleClass="h-full">
+        <ng-template pTemplate="header">
+          <div class="p-4 border-b border-gray-100">
+            <h3 class="text-lg font-semibold text-gray-800">Conversion Rate</h3>
+          </div>
+        </ng-template>
+        <div class="p-4">
+          <p-chart type="line" [data]="MajorData" [options]="chartOptions" height="250px"></p-chart>
+        </div>
+      </p-card>
+      
+    </div> -->
+  </div>

@@ -1,0 +1,52 @@
+<div class="flex-1 p-6 overflow-auto">
+    <p-toast />
+    <div class="mb-6 flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Users</h1>
+        </div>
+    </div>
+    <div class="w-full bg-white p-6 rounded-xl shadow-sm">
+        <p-table
+            [value]="users"
+            [paginator]="true"
+            [rows]="10"
+        >
+            <ng-template #header>
+                <tr>
+                    <th class="w-1/5 p-3 text-left font-semibold">Name</th>
+                    <th class="w-1/5 p-3 text-left font-semibold">Email</th>
+                    <th class="w-1/5 p-3 text-left font-semibold">Major</th>
+                    <th class="w-1/5 p-3 text-left font-semibold">Status</th>
+                    <th class="w-1/5 p-3 text-left font-semibold">Joined Date</th>
+                    <th class="w-1/5 p-3 text-left font-semibold">Options</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-user>
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <p class="">{{ user.major.split("-").join(" ") }}</p>
+                    </td>
+                    <td>
+                        <p
+                            class="text-sm font-semibold"
+                            [ngClass]="{
+                                'text-green-500': !user.blocked,
+                                'text-red-500': user.blocked
+                            }"
+                        >
+                            {{ user.blocked ? "Blocked" : "Active" }}
+                        </p>
+                    </td>
+                    <td>{{ user.created_at | date: 'medium' }}</td>
+                    <td class="flex gap-2">
+                        <p-button>Courses</p-button>
+                        <p-button *ngIf="!user.blocked" label="Block" icon="" (onClick)="blockUser(user.id)" />
+                        <p-button *ngIf="user.blocked" label="UnBlock" icon="" (onClick)="unBlocked(user.id)" />
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

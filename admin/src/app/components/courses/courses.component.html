@@ -1,0 +1,62 @@
+<div class="p-6 overflow-auto h-[100vh]">
+    <p-toast />
+    <div class="mb-6 flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Courses</h1>
+            <p class="text-gray-500">Welcome back</p>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 mb-[30px] rounded-xl shadow-sm w-full flex flex-wrap justify-between items-center gap-4">
+        <div class="flex flex-wrap gap-4">
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input type="text" pInputText placeholder="Search..." (input)="handleSearch($event)" />
+            </p-iconfield>
+            <p-select [options]="majors" [(ngModel)]="selectedMajor" (ngModelChange)="selectMajor()" optionLabel="name" placeholder="Select Major" class="w-full md:w-56" />
+        </div>
+        <p-button (click)="goToEditor()" label="Add Course" icon="pi pi-plus" />
+    </div>
+
+    <div class="flex flex-wrap gap-6">
+        <div *ngFor="let course of filteredCourses" class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-auto w-[360px] h-auto relative">
+            <span class="absolute top-2 left-2 bg-[#6366f1] text-white text-[13px] font-medium px-[9px] py-[5px] rounded-tr-xl rounded-bl-xl">
+                Code: 
+                {{course.course_code}}
+            </span>
+            <img
+                src={{course.course_image}}
+                alt="Course Image"
+                width={360}
+                height={200}
+                class="w-full h-[200px] object-cover rounded-t-xl"
+            />
+            <div class="p-5 min-h-[165px] relative pb-[60px]">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                    {{course.course_name}}
+                </h3>
+                <p class="text-gray-600 mb-[10px] text-sm course_desc">
+                    {{course.course_description}}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <p *ngFor="let major of course.course_major.split(', ')" class="text-[11px] font-medium text-[#6366f1] bg-[#6366f12e] px-[9px] py-[5px] rounded-full">{{major.split("-").join(" ")}}</p>
+                    <!-- <p class="text-[11px] font-medium text-[#6366f1] bg-[#6366f12e] px-[9px] py-[5px] rounded-full">{{course.course_major}}</p> -->
+                </div>
+            </div>
+            <div class="absolute flex bottom-[11px] left-[18px] w-[90%] flex-wrap justify-center gap-2">
+                <button 
+                    class="px-[30px] py-[9px] rounded-[4px] bg-[#6665f1] text-white font-medium text-sm flex items-center transition-all duration-300 cursor-pointer hover:bg-[#4543b9]"
+                    (click)="viewCourse(course.id)"
+                >
+                    View
+                </button>
+                <button 
+                    class="px-[30px] py-[9px] rounded-[4px] bg-[#ea1212] text-white font-medium text-sm flex items-center transition-all duration-300 cursor-pointer hover:bg-[#a42424]"
+                    (click)="deleteCourse(course.id)"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
