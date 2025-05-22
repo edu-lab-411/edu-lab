@@ -1,0 +1,12 @@
+node_modules
+__pycache__
+.env
+*.zip
+*.sql
+*.excalidraw
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+env
