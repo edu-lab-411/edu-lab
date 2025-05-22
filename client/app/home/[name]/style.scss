@@ -1,0 +1,53 @@
+.bgh{
+    position: relative;
+    &:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+pre {
+    background-color: rgb(78 70 229 / 7%);
+    // color: #f1f1f3;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 14px;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    line-height: 1.7;
+    margin: 10px 0;
+    color: #4f46e5;
+    position: relative;
+}
+
+code {
+    color: #4f46e5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+    background-color: rgba(78, 70, 229, 0.272);
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #4f46e5;
+    border-radius: 4px;
+    
+    &:hover {
+        background: darken(#4f46e5, 15%);
+    }
+}
