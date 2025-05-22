@@ -40,3 +40,7 @@ app.include_router(auth_router.router, prefix="/api/auth", tags=["Auth"])
 app.include_router(course_router.router, prefix="/api/course", tags=["Course"])
 app.include_router(admin_router.router, prefix="/api/dashboard", tags=["Dashboard"])
 app.include_router(book_router.router, prefix="/api/book", tags=["Book"])
+
+
+
+# Run the app
