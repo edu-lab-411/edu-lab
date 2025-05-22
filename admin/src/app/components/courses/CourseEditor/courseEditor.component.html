@@ -1,0 +1,43 @@
+<div class="p-6 overflow-auto h-[100vh]">
+    <p-toast />
+    <div class="mb-6 flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Add Course</h1>
+            <!-- <p class="text-gray-500">Good</p> -->
+        </div>
+    </div>
+    <div class="mx-auto flex w-[80%] flex-wrap bg-white p-[20px] border border-[#EEE] rounded-[5px] gap-2">
+        <h2 class="font-medium text-[18px]">Basic Information</h2>
+        <input pInputText [(ngModel)]="courseImage" type="text"  placeholder="Course Image Link" class="w-[100%]" />
+        <input pInputText [(ngModel)]="title" type="text"  placeholder="Course Title" class="w-[100%]" />
+        <div class="card flex justify-center w-full">
+            <p-multiselect [options]="majors" [(ngModel)]="selectedMajor" placeholder="Select Majors" optionLabel="name" display="chip" styleClass="w-[100%]" />
+        </div>
+        <textarea pTextarea [(ngModel)]="description" placeholder="Course Description" class="w-[100%] resize-none" rows="5"></textarea>
+    </div>
+    <p-message *ngIf="errorMessage.length" severity="error" class="w-[80%] mt-4 flex mx-auto justify-center">{{errorMessage}}</p-message>
+    <div class="mx-auto mt-4 flex items-center justify-end w-[80%]">
+        <p-button label="Add Section" icon="pi pi-plus" (click)="addSection()" />
+    </div>
+    <div class="sections mt-4">
+        <div *ngFor="let section of sections">
+            <div class="section mx-auto flex h-fit w-[80%] flex-wrap bg-white p-[20px] border border-[#EEE] rounded-[5px] gap-2 mb-4 relative">
+                <button *ngIf="sections.length >1" class="absolute top-[10px] right-[10px] cursor-pointer" type="button">
+                    <i class="pi pi-trash" (click)="removeSection(section.number)"></i>
+                </button>
+                <h2 class="font-medium text-[18px]">Section {{section.number}}</h2>
+                <input pInputText [(ngModel)]="section.title" type="text"  placeholder="Section title" class="w-[100%]" />
+                <textarea [(ngModel)]="section.description" pTextarea placeholder="Small description about section" class="w-[100%] resize-none" rows="3"></textarea>
+                <input pInputText [(ngModel)]="section.video" type="text"  placeholder="Youtube Video Link (optional)" class="w-[100%]" />
+                <quill-editor [(ngModel)]="section.content"></quill-editor>
+            </div>
+        </div>
+    </div>
+    <div class="w-[80%] mx-auto mt-4 flex items-center justify-center">
+        <p-button label="Cancel" icon="pi pi-times" class="mr-2" (onClick)="cancelEditor()" />
+        <p-button *ngIf="!isEditing" label="Add" icon="pi pi-check" (onClick)="saveCourse()" />
+        <p-button *ngIf="isEditing" label="Save" icon="pi pi-check" (onClick)="saveEdit()" />
+
+    </div>
+    
+</div>
