@@ -18,3 +18,5 @@ GET http://localhost:8081/api/favorite/check?userId=5&courseId=456
 
 ###
 GET http://localhost:8081/api/favorite/getByUser?userId=5
+
+
